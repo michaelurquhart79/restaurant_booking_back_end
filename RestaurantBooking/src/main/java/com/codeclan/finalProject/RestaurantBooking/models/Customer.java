@@ -1,9 +1,11 @@
 package com.codeclan.finalProject.RestaurantBooking.models;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "customers")
+
 public class Customer {
 
     @Id

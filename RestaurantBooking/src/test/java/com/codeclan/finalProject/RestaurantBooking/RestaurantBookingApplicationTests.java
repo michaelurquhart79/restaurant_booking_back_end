@@ -3,6 +3,7 @@ package com.codeclan.finalProject.RestaurantBooking;
 import com.codeclan.finalProject.RestaurantBooking.models.Customer;
 import com.codeclan.finalProject.RestaurantBooking.models.Table;
 import com.codeclan.finalProject.RestaurantBooking.repositories.CustomerRepository.CustomerRepository;
+import com.codeclan.finalProject.RestaurantBooking.repositories.TableRepository.TableRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class RestaurantBookingApplicationTests {
 
 	@Autowired
 	CustomerRepository customerRepository;
+
+	@Autowired
+	TableRepository tableRepository;
 
 	@Test
 	public void contextLoads() {
@@ -53,6 +57,15 @@ public class RestaurantBookingApplicationTests {
 	public void tableHasCapacity() {
 		Table table = new Table(4);
 		assertEquals(4, table.getCapacity());
+		assertEquals(null, table.getId());
+	}
+
+	@Test
+	public void tableCanBeSaved() {
+		Table table = new Table(4);
+		assertEquals(null, table.getId());
+		tableRepository.save(table);
+		assertNotNull(table.getId());
 	}
 
 }
