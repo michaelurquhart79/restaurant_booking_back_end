@@ -24,11 +24,16 @@ public class Booking {
     @Column(name = "comments")
     private String comments;
 
-    public Booking(String date, String time, int partySize, String comments) {
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
+
+    public Booking(String date, String time, int partySize, String comments, Customer customer) {
         this.date = date;
         this.time = time;
         this.partySize = partySize;
         this.comments = comments;
+        this.customer = customer;
     }
 
     public Booking() {
@@ -73,5 +78,13 @@ public class Booking {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

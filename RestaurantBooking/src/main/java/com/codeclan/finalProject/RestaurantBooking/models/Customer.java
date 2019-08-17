@@ -2,6 +2,8 @@ package com.codeclan.finalProject.RestaurantBooking.models;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -22,10 +24,14 @@ public class Customer {
     @Column(name = "no_of_visits")
     private int noOfVisits;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Booking> bookings;
+
     public Customer(String name, String contact) {
         this.name = name;
         this.contact = contact;
         this.noOfVisits = 0;
+        this.bookings = new ArrayList<Booking>();
     }
 
     public Customer() {
@@ -61,5 +67,13 @@ public class Customer {
 
     public void setNoOfVisits(int noOfVisits) {
         this.noOfVisits = noOfVisits;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

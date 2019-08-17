@@ -74,17 +74,21 @@ public class RestaurantBookingApplicationTests {
 
 	@Test
 	public void bookingHasAttributes() {
-		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment");
+		Customer customer = new Customer("Bob", "07999999999");
+		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment", customer);
 		assertEquals("2019-08-18", booking.getDate());
 		assertEquals("18:15", booking.getTime());
 		assertEquals(4, booking.getPartySize());
 		assertEquals("No Comment", booking.getComments());
+		assertEquals("Bob", booking.getCustomer().getName());
 		assertNull(booking.getId());
 	}
 
 	@Test
 	public void bookingCanBeSaved() {
-		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment");
+		Customer customer = new Customer("Bob", "07999999999");
+		customerRepository.save(customer);
+		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment", customer);
 		assertNull(booking.getId());
 		bookingRepository.save(booking);
 		assertNotNull(booking.getId());
