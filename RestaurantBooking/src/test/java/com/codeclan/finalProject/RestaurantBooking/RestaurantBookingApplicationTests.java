@@ -1,6 +1,7 @@
 package com.codeclan.finalProject.RestaurantBooking;
 
 import com.codeclan.finalProject.RestaurantBooking.models.Customer;
+import com.codeclan.finalProject.RestaurantBooking.models.Table;
 import com.codeclan.finalProject.RestaurantBooking.repositories.CustomerRepository.CustomerRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +47,12 @@ public class RestaurantBookingApplicationTests {
 		assertEquals(null, customer.getId());
 		customerRepository.save(customer);
 		assertNotNull(customer.getId());
+	}
+
+	@Test
+	public void tableHasCapacity() {
+		Table table = new Table(4);
+		assertEquals(4, table.getCapacity());
 	}
 
 }
