@@ -3,6 +3,7 @@ package com.codeclan.finalProject.RestaurantBooking;
 import com.codeclan.finalProject.RestaurantBooking.models.Booking;
 import com.codeclan.finalProject.RestaurantBooking.models.Customer;
 import com.codeclan.finalProject.RestaurantBooking.models.Table;
+import com.codeclan.finalProject.RestaurantBooking.repositories.BookingRepository.BookingRepository;
 import com.codeclan.finalProject.RestaurantBooking.repositories.CustomerRepository.CustomerRepository;
 import com.codeclan.finalProject.RestaurantBooking.repositories.TableRepository.TableRepository;
 import org.junit.Test;
@@ -22,6 +23,9 @@ public class RestaurantBookingApplicationTests {
 
 	@Autowired
 	TableRepository tableRepository;
+
+	@Autowired
+	BookingRepository bookingRepository;
 
 	@Test
 	public void contextLoads() {
@@ -77,5 +81,13 @@ public class RestaurantBookingApplicationTests {
 		assertEquals("No Comment", booking.getComments());
 		assertNull(booking.getId());
 	}
-	
+
+	@Test
+	public void bookingCanBeSaved() {
+		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment");
+		assertNull(booking.getId());
+		bookingRepository.save(booking);
+		assertNotNull(booking.getId());
+	}
+
 }

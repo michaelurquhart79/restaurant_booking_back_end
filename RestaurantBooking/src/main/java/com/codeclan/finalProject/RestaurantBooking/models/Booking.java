@@ -1,15 +1,27 @@
 package com.codeclan.finalProject.RestaurantBooking.models;
 
+import javax.persistence.*;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "bookings")
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "date")
     private String date;
 
+    @Column(name = "time")
     private String time;
 
+    @Column(name = "party_size")
     private int partySize;
 
+    @Column(name = "comments")
     private String comments;
 
     public Booking(String date, String time, int partySize, String comments) {
