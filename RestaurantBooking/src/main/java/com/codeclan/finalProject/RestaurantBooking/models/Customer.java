@@ -24,7 +24,7 @@ public class Customer {
     @Column(name = "no_of_visits")
     private int noOfVisits;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
     private List<Booking> bookings;
 
     public Customer(String name, String contact) {

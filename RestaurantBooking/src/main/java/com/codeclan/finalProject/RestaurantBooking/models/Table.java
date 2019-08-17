@@ -17,7 +17,7 @@ public class Table {
     @Column(name = "capacity")
     private int capacity;
 
-    @OneToMany(mappedBy = "table")
+    @OneToMany(mappedBy = "table", cascade = CascadeType.REMOVE)
     private List<Booking> bookings;
 
 
