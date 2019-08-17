@@ -1,5 +1,6 @@
 package com.codeclan.finalProject.RestaurantBooking;
 
+import com.codeclan.finalProject.RestaurantBooking.models.Booking;
 import com.codeclan.finalProject.RestaurantBooking.models.Customer;
 import com.codeclan.finalProject.RestaurantBooking.models.Table;
 import com.codeclan.finalProject.RestaurantBooking.repositories.CustomerRepository.CustomerRepository;
@@ -10,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -68,4 +68,14 @@ public class RestaurantBookingApplicationTests {
 		assertNotNull(table.getId());
 	}
 
+	@Test
+	public void bookingHasAttributes() {
+		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment");
+		assertEquals("2019-08-18", booking.getDate());
+		assertEquals("18:15", booking.getTime());
+		assertEquals(4, booking.getPartySize());
+		assertEquals("No Comment", booking.getComments());
+		assertNull(booking.getId());
+	}
+	
 }
