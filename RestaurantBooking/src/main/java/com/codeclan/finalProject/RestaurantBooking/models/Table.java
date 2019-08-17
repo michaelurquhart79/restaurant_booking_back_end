@@ -1,6 +1,8 @@
 package com.codeclan.finalProject.RestaurantBooking.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -15,9 +17,13 @@ public class Table {
     @Column(name = "capacity")
     private int capacity;
 
+    @OneToMany(mappedBy = "table")
+    private List<Booking> bookings;
+
 
     public Table(int capacity) {
         this.capacity = capacity;
+        this.bookings = new ArrayList<Booking>();
     }
 
     public Table() {
@@ -37,5 +43,13 @@ public class Table {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

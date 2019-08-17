@@ -28,12 +28,18 @@ public class Booking {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    public Booking(String date, String time, int partySize, String comments, Customer customer) {
+    @ManyToOne
+    @JoinColumn(name = "table_id", nullable = false)
+    private com.codeclan.finalProject.RestaurantBooking.models.Table table;
+
+    public Booking(String date, String time, int partySize, String comments, Customer customer,
+                   com.codeclan.finalProject.RestaurantBooking.models.Table table) {
         this.date = date;
         this.time = time;
         this.partySize = partySize;
         this.comments = comments;
         this.customer = customer;
+        this.table = table;
     }
 
     public Booking() {
@@ -86,5 +92,13 @@ public class Booking {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public com.codeclan.finalProject.RestaurantBooking.models.Table getTable() {
+        return table;
+    }
+
+    public void setTable(com.codeclan.finalProject.RestaurantBooking.models.Table table) {
+        this.table = table;
     }
 }

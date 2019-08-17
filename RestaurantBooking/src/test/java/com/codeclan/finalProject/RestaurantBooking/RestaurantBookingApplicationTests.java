@@ -75,12 +75,15 @@ public class RestaurantBookingApplicationTests {
 	@Test
 	public void bookingHasAttributes() {
 		Customer customer = new Customer("Bob", "07999999999");
-		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment", customer);
+		Table table = new Table(4);
+		Booking booking = new Booking("2019-08-18", "18:15", 4,
+				"No Comment", customer, table);
 		assertEquals("2019-08-18", booking.getDate());
 		assertEquals("18:15", booking.getTime());
 		assertEquals(4, booking.getPartySize());
 		assertEquals("No Comment", booking.getComments());
 		assertEquals("Bob", booking.getCustomer().getName());
+		assertEquals(4, booking.getTable().getCapacity());
 		assertNull(booking.getId());
 	}
 
@@ -88,10 +91,15 @@ public class RestaurantBookingApplicationTests {
 	public void bookingCanBeSaved() {
 		Customer customer = new Customer("Bob", "07999999999");
 		customerRepository.save(customer);
-		Booking booking = new Booking("2019-08-18", "18:15", 4, "No Comment", customer);
+		Table table = new Table(4);
+		tableRepository.save(table);
+		Booking booking = new Booking("2019-08-18", "18:15", 4,
+				"No Comment", customer, table);
 		assertNull(booking.getId());
 		bookingRepository.save(booking);
 		assertNotNull(booking.getId());
 	}
+
+
 
 }
